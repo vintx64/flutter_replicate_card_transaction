@@ -10,7 +10,7 @@ class ExpensesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(title: 'Expenses'),
-      body: ExpensesViewBody(),
+      body: const ExpensesViewBody(),
     );
   }
 }
