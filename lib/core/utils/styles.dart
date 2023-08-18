@@ -5,5 +5,5 @@ abstract class Styles {
   static const appBarTxtStyle =
       TextStyle(fontFamily: kLatoBold, color: Colors.black, fontSize: 24);
   static const tabBarItemsStyle =
-      TextStyle(fontFamily: kLatoRegular, color: Colors.black, fontSize: 18);
+      TextStyle(fontFamily: kLatoRegular, fontSize: 18);
 }

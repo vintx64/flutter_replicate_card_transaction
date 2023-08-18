@@ -6,6 +6,6 @@ class ExpensesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTabBar();
+    return const CustomTabBar();
   }
 }
