@@ -9,7 +9,9 @@ class ExpensesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'Expenses'),
+      appBar: customAppBar(
+        title: 'Expenses',
+      ),
       body: const ExpensesViewBody(),
     );
   }
