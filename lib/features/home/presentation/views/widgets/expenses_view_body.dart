@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_replicate_card_transaction/features/home/presentation/views/widgets/custom_pie_chart.dart';
 import 'package:flutter_replicate_card_transaction/features/home/presentation/views/widgets/custom_tab_bar.dart';
 
 class ExpensesViewBody extends StatelessWidget {
@@ -6,6 +7,8 @@ class ExpensesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomTabBar();
+    return Center(
+      child: CustomPieChart(),
+    );
   }
 }
