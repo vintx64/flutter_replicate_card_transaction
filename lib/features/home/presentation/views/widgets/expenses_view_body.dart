@@ -7,8 +7,18 @@ class ExpensesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CustomPieChart(),
+    return Column(
+      children: [
+        const CustomTabBar(),
+        Padding(
+          padding: const EdgeInsets.only(top: 100),
+          child: SizedBox(
+            height: 180,
+            width: 180,
+            child: CustomPieChart(),
+          ),
+        ),
+      ],
     );
   }
 }
