@@ -11,10 +11,10 @@ class ExpensesViewBody extends StatelessWidget {
       children: [
         CustomTabBar(),
         Padding(
-          padding: EdgeInsets.only(top: 100),
+          padding: EdgeInsets.only(top: 90),
           child: SizedBox(
-            height: 180,
-            width: 180,
+            height: 160,
+            width: 160,
             child: CustomPieChart(),
           ),
         ),
