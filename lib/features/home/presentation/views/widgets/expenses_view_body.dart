@@ -7,11 +7,11 @@ class ExpensesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
-        const CustomTabBar(),
+        CustomTabBar(),
         Padding(
-          padding: const EdgeInsets.only(top: 100),
+          padding: EdgeInsets.only(top: 100),
           child: SizedBox(
             height: 180,
             width: 180,

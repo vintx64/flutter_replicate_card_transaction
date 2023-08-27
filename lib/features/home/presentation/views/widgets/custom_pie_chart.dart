@@ -24,8 +24,10 @@ class ExpenseRepository {
 }
 
 class CustomPieChart extends StatefulWidget {
+  const CustomPieChart({super.key});
+
   @override
-  _CustomPieChartState createState() => _CustomPieChartState();
+  State<CustomPieChart> createState() => _CustomPieChartState();
 }
 
 class _CustomPieChartState extends State<CustomPieChart>
@@ -40,7 +42,7 @@ class _CustomPieChartState extends State<CustomPieChart>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
 
     _rotationAnimation = Tween(begin: 0.0, end: 1.0).animate(
@@ -53,11 +55,17 @@ class _CustomPieChartState extends State<CustomPieChart>
     _textOpacityAnimation = Tween(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _animationController,
-        curve: Interval(0.6, 1.0),
+        curve: const Interval(0.6, 1.0),
       ),
     );
 
     _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -74,12 +82,6 @@ class _CustomPieChartState extends State<CustomPieChart>
       },
     );
   }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
 }
 
 class PieChartWidget extends StatelessWidget {
@@ -88,6 +90,7 @@ class PieChartWidget extends StatelessWidget {
   final double textOpacity;
 
   const PieChartWidget({
+    super.key,
     required this.expenseDataList,
     required this.rotation,
     required this.textOpacity,
@@ -101,7 +104,6 @@ class PieChartWidget extends StatelessWidget {
         rotation: rotation,
         textOpacity: textOpacity,
       ),
-      child: Container(),
     );
   }
 }
@@ -110,7 +112,7 @@ class PieChartPainter extends CustomPainter {
   final List<ExpenseData> expenseDataList;
   final double rotation;
   final double textOpacity;
-  final double gapSize = 6; // Adjust the gap size between arcs
+  final double gapSize = 6;
 
   PieChartPainter({
     required this.expenseDataList,
@@ -124,8 +126,10 @@ class PieChartPainter extends CustomPainter {
     final radius = size.width * 0.9;
     final rect = Rect.fromCircle(center: center, radius: radius);
 
-    var totalPercentage =
-        expenseDataList.fold(0.0, (sum, data) => sum + data.percentage);
+    var totalPercentage = expenseDataList.fold(
+      0.0,
+      (sum, data) => sum + data.percentage,
+    );
     var totalAngle = 360.0;
     var gapCount = expenseDataList.length;
     var totalGapSize = gapCount * gapSize;
@@ -149,42 +153,56 @@ class PieChartPainter extends CustomPainter {
       startAngle += sweepAngle + gapAngle;
     }
 
-    final textPainter1 = TextPainter(
-      text: TextSpan(
-        text: 'Total Spent',
-        style: TextStyle(
-          fontSize: 22,
-          color: Colors.black.withOpacity(0.2 * textOpacity),
-        ),
-      ),
+    _drawText(
+      canvas,
+      text: 'Total Spent',
+      fontSize: 22,
+      opacity: 0.2,
+      textOpacity: textOpacity,
+      center: center,
+      offsetY: -30,
+    );
+
+    _drawText(
+      canvas,
+      text: '\$9,000.00',
+      fontSize: 28,
+      fontWeight: FontWeight.bold,
+      opacity: 1.0,
+      textOpacity: textOpacity,
+      center: center,
+      offsetY: 0,
+    );
+  }
+
+  void _drawText(
+    Canvas canvas, {
+    required String text,
+    double fontSize = 16,
+    FontWeight fontWeight = FontWeight.normal,
+    double opacity = 1.0,
+    required double textOpacity,
+    required Offset center,
+    required double offsetY,
+  }) {
+    final textStyle = TextStyle(
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      color: Colors.black.withOpacity(opacity * textOpacity),
+    );
+
+    final textSpan = TextSpan(text: text, style: textStyle);
+    final textPainter = TextPainter(
+      text: textSpan,
       textDirection: TextDirection.ltr,
     );
-    textPainter1.layout();
 
-    final textPainter2 = TextPainter(
-      text: TextSpan(
-        text: '\$9,000.00',
-        style: TextStyle(
-          fontSize: 28,
-          fontWeight: FontWeight.bold,
-          color: Colors.black.withOpacity(textOpacity),
-        ),
-      ),
-      textDirection: TextDirection.ltr,
-    );
-    textPainter2.layout();
+    textPainter.layout();
+    final dx = center.dx - textPainter.width / 2;
+    final dy = center.dy + offsetY;
+    final offset = Offset(dx, dy);
 
-    final text1Offset = Offset(
-      center.dx - textPainter1.width / 2,
-      center.dy - textPainter1.height - 8,
-    );
-    textPainter1.paint(canvas, text1Offset);
-
-    final text2Offset = Offset(
-      center.dx - textPainter2.width / 2,
-      center.dy - 8,
-    );
-    textPainter2.paint(canvas, text2Offset);
+    textPainter.paint(canvas, offset);
   }
 
   @override
