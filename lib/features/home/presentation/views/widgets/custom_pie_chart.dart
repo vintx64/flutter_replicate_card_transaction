@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import '../../../../../constants.dart';
 
 class ExpenseData {
   final String name;
@@ -35,14 +36,13 @@ class _CustomPieChartState extends State<CustomPieChart>
   late AnimationController _animationController;
   late Animation<double> _rotationAnimation;
   late Animation<double> _textOpacityAnimation;
-
   @override
   void initState() {
     super.initState();
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 4),
     );
 
     _rotationAnimation = Tween(begin: 0.0, end: 1.0).animate(
@@ -156,22 +156,24 @@ class PieChartPainter extends CustomPainter {
     _drawText(
       canvas,
       text: 'Total Spent',
-      fontSize: 22,
-      opacity: 0.2,
+      fontSize: 15,
+      opacity: 1.0,
       textOpacity: textOpacity,
+      color: Color.fromRGBO(152, 159, 185, (1 * textOpacity)),
       center: center,
-      offsetY: -30,
+      offsetY: -28,
     );
 
     _drawText(
       canvas,
       text: '\$9,000.00',
-      fontSize: 28,
-      fontWeight: FontWeight.bold,
+      fontSize: 32,
+      fontFamily: kLatoBold,
       opacity: 1.0,
       textOpacity: textOpacity,
+      color: Color.fromRGBO(0, 0, 0, (1 * textOpacity)),
       center: center,
-      offsetY: 0,
+      offsetY: -10,
     );
   }
 
@@ -179,16 +181,19 @@ class PieChartPainter extends CustomPainter {
     Canvas canvas, {
     required String text,
     double fontSize = 16,
-    FontWeight fontWeight = FontWeight.normal,
     double opacity = 1.0,
     required double textOpacity,
+    FontWeight fontWeight = FontWeight.normal,
+    String fontFamily = kLatoRegular,
+    Color? color,
     required Offset center,
     required double offsetY,
   }) {
     final textStyle = TextStyle(
       fontSize: fontSize,
       fontWeight: fontWeight,
-      color: Colors.black.withOpacity(opacity * textOpacity),
+      color: color,
+      fontFamily: fontFamily,
     );
 
     final textSpan = TextSpan(text: text, style: textStyle);
