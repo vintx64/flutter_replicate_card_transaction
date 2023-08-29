@@ -35,7 +35,7 @@ class _CustomTabBarState extends State<CustomTabBar>
           controller: _tabController,
           labelColor: Colors.black,
           indicatorColor: kPrimaryColor,
-          unselectedLabelColor: Color.fromRGBO(152, 159, 185, 1),
+          unselectedLabelColor: const Color.fromRGBO(152, 159, 185, 1),
           tabs: [
             _buildTab('Week', 0),
             _buildTab('Month', 1),
