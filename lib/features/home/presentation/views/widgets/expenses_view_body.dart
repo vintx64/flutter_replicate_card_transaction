@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_replicate_card_transaction/features/home/presentation/views/widgets/custom_pie_chart.dart';
 import 'package:flutter_replicate_card_transaction/features/home/presentation/views/widgets/custom_tab_bar.dart';
 
+import 'month_scroll.dart';
+
 class ExpensesViewBody extends StatelessWidget {
   const ExpensesViewBody({super.key});
 
@@ -18,6 +20,7 @@ class ExpensesViewBody extends StatelessWidget {
             child: CustomPieChart(),
           ),
         ),
+        MonthScroll(),
       ],
     );
   }
