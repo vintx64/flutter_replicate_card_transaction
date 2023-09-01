@@ -13,14 +13,18 @@ class ExpensesViewBody extends StatelessWidget {
       children: [
         CustomTabBar(),
         Padding(
-          padding: EdgeInsets.only(top: 90),
+          padding: EdgeInsets.only(top: 90, bottom: 90),
           child: SizedBox(
             height: 160,
             width: 160,
             child: CustomPieChart(),
           ),
         ),
-        MonthScroll(),
+        SizedBox(
+          height: 40,
+          width: 350,
+          child: MonthScroll(),
+        ),
       ],
     );
   }
