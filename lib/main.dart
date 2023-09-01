@@ -13,7 +13,7 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: kPrimaryColor, // Set your desired app bar color here
+      statusBarColor: kPrimaryColor,
     ));
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
