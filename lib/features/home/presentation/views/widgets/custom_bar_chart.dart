@@ -8,7 +8,7 @@ class ExpenseChartWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ExpenseChartWidgetState createState() => _ExpenseChartWidgetState();
+  State<ExpenseChartWidget> createState() => _ExpenseChartWidgetState();
 }
 
 class _ExpenseChartWidgetState extends State<ExpenseChartWidget>
