@@ -12,8 +12,8 @@ class ExpensesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomTabBar(),
-        Padding(
+        const CustomTabBar(),
+        const Padding(
           padding: EdgeInsets.only(top: 90, bottom: 90),
           child: SizedBox(
             height: 160,
@@ -21,7 +21,7 @@ class ExpensesViewBody extends StatelessWidget {
             child: CustomPieChart(),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
           width: 350,
           child: MonthScroll(),
@@ -29,20 +29,44 @@ class ExpensesViewBody extends StatelessWidget {
         ExpenseChartWidget(
           expenses: [
             Expense(
-              icon: Icons.shopping_cart,
+              icon: Icons.shopping_bag_outlined,
               title: 'Shopping',
-              percentage: 55.0, // Customize percentage
-              color: Colors.blue,
-              transactions: 50, // Customize transactions count
-              price: 500.0, // Customize price
+              percentage: 50,
+              color: const Color.fromRGBO(227, 230, 241, 1),
+              transactions: 73,
+              price: 3500.0,
             ),
             Expense(
-              icon: Icons.favorite,
+              icon: Icons.favorite_border_outlined,
               title: 'Wellness',
-              percentage: 0.08, // Customize percentage
-              color: Colors.green,
-              transactions: 30, // Customize transactions count
-              price: 300.0, // Customize price
+              percentage: 25,
+              color: const Color.fromRGBO(231, 244, 239, 1),
+              transactions: 73,
+              price: 1750.0,
+            ),
+            Expense(
+              icon: Icons.airplanemode_active_outlined,
+              title: 'Transport',
+              percentage: 12.5,
+              color: const Color.fromRGBO(255, 235, 237, 1),
+              transactions: 73,
+              price: 875.0,
+            ),
+            Expense(
+              icon: Icons.restaurant_outlined,
+              title: 'Bars & Resturant',
+              percentage: 6.25,
+              color: const Color.fromRGBO(255, 240, 233, 1),
+              transactions: 73,
+              price: 437.50,
+            ),
+            Expense(
+              icon: Icons.new_releases_outlined,
+              title: 'Subscriptions',
+              percentage: 18.5,
+              color: const Color.fromRGBO(239, 239, 247, 1),
+              transactions: 73,
+              price: 4186.0,
             ),
           ],
         ),
