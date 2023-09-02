@@ -53,7 +53,7 @@ class ExpensesViewBody extends StatelessWidget {
               price: 875.0,
             ),
             Expense(
-              icon: Icons.restaurant_outlined,
+              icon: Icons.restaurant_menu_outlined,
               title: 'Bars & Resturant',
               percentage: 6.25,
               color: const Color.fromRGBO(255, 240, 233, 1),
